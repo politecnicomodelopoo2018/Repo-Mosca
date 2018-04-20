@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from class_sistema import Sistema
+from ej_5.class_sistema import Sistema
 
 sist = Sistema()
 

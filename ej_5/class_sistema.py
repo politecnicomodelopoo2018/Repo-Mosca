@@ -1,5 +1,5 @@
-from class_persona import Persona, Artista, Autor
-from class_album_cancion import Album, Cancion
+from ej_5.class_persona import Artista, Autor
+from ej_5.class_album_cancion import Album, Cancion
 
 class Sistema(object):
         def __init__(self):
