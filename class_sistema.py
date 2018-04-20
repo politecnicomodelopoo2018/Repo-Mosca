@@ -10,8 +10,8 @@ class Sistema(object):
             self.lista_autores = []
 
         # Creacion de objetos
-        def crearCancion(self, titulo):
-            tmp_cancion = Cancion(titulo)
+        def crearCancion(self, titulo, artistas = [], autores = []):
+            tmp_cancion = Cancion(titulo, artistas, autores)
             self.lista_canciones.append(tmp_cancion)
             return tmp_cancion
 
@@ -36,3 +36,7 @@ class Sistema(object):
             for autor in self.lista_autores:
                 if autor.nacionalidad == nacion:
                     for cancion in self.lista_canciones:
+                        if autor in cancion.lista_autores and not cancion in tmp_canciones:
+                            tmp_canciones.append(cancion)
+
+            return tmp_canciones
