@@ -209,3 +209,139 @@ def loop_plato(sist):
 
         elif tmp_inp == "4":
             fin_loop = True
+
+def loop_pedido(sist):
+    fin_loop = False
+    while not fin_loop:
+        print("\n-------- CREAR/MODIFICAR PEDIDO --------")
+        print("# Pedidos existentes: " + str(len(sist.lista_pedidos)))
+        print("1 - Crear nuevo pedido")
+        print("2 - Modificar pedido existente")
+        print("3 - Eliminar pedido")
+        print("4 - Volver")
+
+        fin_subloop = False
+        tmp_inp = input()
+        if tmp_inp == "1":  # Crear nuevo pedido
+            new_pedido = sist.crearPedido([], None, None, 0)
+
+            # Fecha del pedido
+            print("Ingrese la fecha del pedido con el formato <Dia>/<Mes>/<Año> (por ej. 12/7/2000):")
+            new_pedido.fecha = [int(f) for f in input().split("/")]
+
+            # Plato del pedido
+            print("\n")
+            for i, pl in enumerate(sist.lista_platos):
+                print(str(i) + " - " + pl.info_string())
+            print("Ingrese el numero del plato para el pedido:")
+
+            tmp_subloop = False
+            while not tmp_subloop:
+                tmp_inp = int(input())
+                if not (tmp_inp >= 0 and tmp_inp < len(sist.lista_platos)):
+                    print("Entrada incorrecta!\n")
+                else:
+                    tmp_subloop = True
+
+            new_pedido.plato = sist.lista_platos[tmp_inp]
+
+            # Cliente del pedido
+            print("\n")
+            tmp_clientes = sist.lista_alumnos + sist.lista_profesores
+            for i, cl in enumerate(tmp_clientes):
+                print(str(i) + " - " + cl.info_string())
+            print("Ingrese el numero del cliente para el pedido:")
+
+            tmp_subloop = False
+            while not tmp_subloop:
+                tmp_inp = int(input())
+                if not (tmp_inp >= 0 and tmp_inp < len(tmp_clientes)):
+                    print("Entrada incorrecta!\n")
+                else:
+                    tmp_subloop = True
+
+            new_pedido.cliente = tmp_clientes[tmp_inp]
+
+            print("Ingrese la hora de entrega del pedido, con el formato <Hora>:<Minutos> (por ej. 20:30):")
+            new_pedido.hora_entrega = [int(h) for h in input().split(":")]
+
+        elif tmp_inp == "2":  # Modificar pedido existente
+            while not fin_subloop:
+                if len(sist.lista_pedidos) > 0:
+                    print("Modificar pedido...")
+                    for i, pedido in enumerate(sist.lista_pedidos):
+                        print(str(i + 1) + " - " + pedido.info_string())
+                    print(str(len(sist.lista_pedidos) + 1) + " - Volver")
+
+                    tmp_inp = int(input()) - 1
+                    if tmp_inp >= 0 and tmp_inp < len(sist.lista_pedidos):
+                        tmp_pedido = sist.lista_pedidos[tmp_inp]
+                        print("Modificando pedido [" + tmp_pedido.info_string() + "]")
+
+                        # Fecha del pedido
+                        print("Ingrese la nueva fecha del pedido con el formato <Dia>/<Mes>/<Año>:")
+                        tmp_pedido.fecha = [int(f) for f in input().split("/")]
+
+                        # Plato del pedido
+                        for i, pl in enumerate(sist.lista_platos):
+                            print(str(i) + " - " + pl.info_string())
+                        print("Ingrese el nuevo numero del plato para el pedido:")
+
+                        tmp_subloop = False
+                        while not tmp_subloop:
+                            tmp_inp = int(input())
+                            if not (tmp_inp >= 0 and tmp_inp < len(sist.lista_platos)):
+                                print("Entrada incorrecta!\n")
+                            else:
+                                tmp_subloop = True
+
+                        tmp_pedido.plato = sist.lista_platos[tmp_inp]
+
+                        # Cliente del pedido
+                        print("\n")
+                        tmp_clientes = sist.lista_alumnos + sist.lista_profesores
+                        for i, cl in enumerate(tmp_clientes):
+                            print(str(i) + " - " + cl.info_string())
+                        print("Ingrese el numero del cliente para el pedido:")
+
+                        tmp_subloop = False
+                        while not tmp_subloop:
+                            tmp_inp = int(input())
+                            if not (tmp_inp >= 0 and tmp_inp < len(tmp_clientes)):
+                                print("Entrada incorrecta!\n")
+                            else:
+                                tmp_subloop = True
+
+                        tmp_pedido.cliente = tmp_clientes[tmp_inp]
+
+                        print("Ingrese la hora de entrega del pedido, con el formato <Hora>:<Minutos> (por ej. 20:30):")
+                        tmp_pedido.hora_entrega = [int(h) for h in input().split(":")]
+
+                    elif tmp_inp == len(sist.lista_pedidos):
+                        fin_subloop = True
+
+                else:
+                    print("No hay mas pedidos que modificar!")
+                    fin_subloop = True
+
+        elif tmp_inp == "3":  # Eliminar pedido existente
+            while not fin_subloop:
+                if len(sist.lista_pedidos) > 0:
+                    print("Eliminar pedido...")
+                    for i, pedido in enumerate(sist.lista_pedidos):
+                        print(str(i + 1) + " - " + pedido.info_string())
+                    print(str(len(sist.lista_pedidos) + 1) + " - Volver")
+
+                    tmp_inp = int(input()) - 1
+                    if tmp_inp >= 0 and tmp_inp < len(sist.lista_pedidos):
+                        sist.lista_pedidos.remove(sist.lista_pedidos[tmp_inp])
+
+                    elif tmp_inp == len(sist.lista_pedidos):
+                        fin_subloop = True
+
+                else:
+                    print("No hay mas pedidos que eliminar!")
+                    fin_subloop = True
+
+        elif tmp_inp == "4":
+            fin_loop = True
