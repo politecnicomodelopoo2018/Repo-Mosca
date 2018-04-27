@@ -32,3 +32,10 @@ class Sistema(object):
         return tmp_pedido
 
     # Metodos
+    def platosDia(self, dia):
+        tmp_platosdia = []
+        for pedido in self.lista_pedidos:
+            if pedido.fecha_creacion == dia:
+                tmp_platosdia.append(pedido.plato)
+
+        return tmp_platosdia

@@ -1,3 +1,6 @@
+from copy import deepcopy
+from class_persona import Profesor
+
 def loop_alumno(sist):
     fin_loop = False
     while not fin_loop:
@@ -226,8 +229,8 @@ def loop_pedido(sist):
             new_pedido = sist.crearPedido([], None, None, 0)
 
             # Fecha del pedido
-            print("Ingrese la fecha del pedido con el formato <Dia>/<Mes>/<Año> (por ej. 12/7/2000):")
-            new_pedido.fecha = [int(f) for f in input().split("/")]
+            print("Ingrese el dia del pedido:")
+            new_pedido.fecha_creacion = int(input())
 
             # Plato del pedido
             print("\n")
@@ -243,7 +246,7 @@ def loop_pedido(sist):
                 else:
                     tmp_subloop = True
 
-            new_pedido.plato = sist.lista_platos[tmp_inp]
+            new_pedido.plato = deepcopy(sist.lista_platos[tmp_inp])
 
             # Cliente del pedido
             print("\n")
@@ -262,6 +265,10 @@ def loop_pedido(sist):
 
             new_pedido.cliente = tmp_clientes[tmp_inp]
 
+            # Aplicar descuento al plato
+            if type(new_pedido.cliente) is Profesor:
+                new_pedido.plato.precio *= (100 - new_pedido.cliente.descuento) / 100
+
             print("Ingrese la hora de entrega del pedido, con el formato <Hora>:<Minutos> (por ej. 20:30):")
             new_pedido.hora_entrega = [int(h) for h in input().split(":")]
 
@@ -279,8 +286,8 @@ def loop_pedido(sist):
                         print("Modificando pedido [" + tmp_pedido.info_string() + "]")
 
                         # Fecha del pedido
-                        print("Ingrese la nueva fecha del pedido con el formato <Dia>/<Mes>/<Año>:")
-                        tmp_pedido.fecha = [int(f) for f in input().split("/")]
+                        print("Ingrese el nuevo dia del pedido:")
+                        tmp_pedido.fecha_creacion = int(input())
 
                         # Plato del pedido
                         for i, pl in enumerate(sist.lista_platos):
@@ -295,7 +302,7 @@ def loop_pedido(sist):
                             else:
                                 tmp_subloop = True
 
-                        tmp_pedido.plato = sist.lista_platos[tmp_inp]
+                        tmp_pedido.plato = deepcopy(sist.lista_platos[tmp_inp])
 
                         # Cliente del pedido
                         print("\n")
@@ -313,6 +320,10 @@ def loop_pedido(sist):
                                 tmp_subloop = True
 
                         tmp_pedido.cliente = tmp_clientes[tmp_inp]
+
+                        # Aplicar descuento al plato
+                        if type(new_pedido.cliente) is Profesor:
+                            new_pedido.plato.precio *= (100 - new_pedido.cliente.descuento) / 100
 
                         print("Ingrese la hora de entrega del pedido, con el formato <Hora>:<Minutos> (por ej. 20:30):")
                         tmp_pedido.hora_entrega = [int(h) for h in input().split(":")]

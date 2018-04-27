@@ -13,7 +13,8 @@ while not fin:
     print("2 - Crear/Modificar Profesor")
     print("3 - Crear/Modificar Plato")
     print("4 - Crear/Modificar Pedido")
-    print("5 - Salir")
+    print("5 - Listar platos a cocinar en un dia")
+    print("6 - Salir")
     print("Escriba el numero correspondiente para continuar:")
 
     inp = input()
@@ -33,5 +34,16 @@ while not fin:
         else:
             loop_pedido(sist)
     elif inp == "5":
+        print("Ingrese el dia:")
+        tmp_platos = sist.platosDia(int(input()))
+        if len(tmp_platos) > 0:
+            for p in tmp_platos:
+                print(p.info_string())
+        else:
+            print("No hay platos en ese dia!")
+
+        ej_pause()
+
+    elif inp == "6":
         print("Finalizando...")
         fin = True
