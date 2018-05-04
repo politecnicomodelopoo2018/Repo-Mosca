@@ -266,8 +266,7 @@ def loop_pedido(sist):
             new_pedido.cliente = tmp_clientes[tmp_inp]
 
             # Aplicar descuento al plato
-            if type(new_pedido.cliente) is Profesor:
-                new_pedido.plato.precio *= (100 - new_pedido.cliente.descuento) / 100
+            new_pedido.plato.precio *= (100 - new_pedido.cliente.get_descuento()) / 100
 
             print("Ingrese la hora de entrega del pedido, con el formato <Hora>:<Minutos> (por ej. 20:30):")
             new_pedido.hora_entrega = [int(h) for h in input().split(":")]
@@ -322,8 +321,7 @@ def loop_pedido(sist):
                         tmp_pedido.cliente = tmp_clientes[tmp_inp]
 
                         # Aplicar descuento al plato
-                        if type(new_pedido.cliente) is Profesor:
-                            new_pedido.plato.precio *= (100 - new_pedido.cliente.descuento) / 100
+                        new_pedido.plato.precio *= (100 - new_pedido.cliente.get_descuento()) / 100
 
                         print("Ingrese la hora de entrega del pedido, con el formato <Hora>:<Minutos> (por ej. 20:30):")
                         tmp_pedido.hora_entrega = [int(h) for h in input().split(":")]
