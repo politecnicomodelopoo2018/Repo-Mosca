@@ -22,7 +22,7 @@ class Sistema(object):
 
     def get_avion(self, codigo):
         for avion in self.lista_aviones:
-            if avion.codigoUnico == codigo:
+            if avion.codigo == codigo:
                 return avion
         return False
 
@@ -86,7 +86,7 @@ class Sistema(object):
             for pers_pasaj in vuelo["pasajeros"]:
                 tmp_pasaj = self.get_persona(pers_pasaj)
                 if tmp_pasaj:
-                    v_tripulacion.append(tmp_pasaj)
+                    v_pasajeros.append(tmp_pasaj)
 
             self.crear_vuelo(v_avion, vuelo["fecha"], vuelo["hora"], vuelo["origen"], vuelo["destino"], v_tripulacion, v_pasajeros)
 

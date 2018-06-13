@@ -1,9 +1,17 @@
+import datetime
+
 class Persona(object):
     def __init__(self, nombre, apellido, fechanac, dni):
         self.nombre = nombre
         self.apellido = apellido
-        self.fechaNacimiento = fechanac
+        if type(fechanac) is str:
+            self.fechaNacimiento = datetime.datetime.strptime(fechanac, "%Y-%m-%d")
+        else:
+            self.fechaNacimiento = fechanac
         self.dni = dni
+
+    def get_edad(self):
+        return datetime.datetime.now() - self.fechaNacimiento
 
 class Pasajero(Persona):
     def __init__(self, nombre, apellido, fechanac, dni, vip, nec_esp):
