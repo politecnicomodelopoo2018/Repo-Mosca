@@ -20,6 +20,11 @@
                 {% else %}
                     no
                 {% endif %}
+                <br>
+                {% if pasaj.solicitudesEspeciales %}
+                    Solicitudes:
+                    {{ pasaj.solicitudesEspeciales }}
+                {% endif %}
             {% endfor %}
         </ul>
     </ul>
