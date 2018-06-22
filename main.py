@@ -1,7 +1,18 @@
 from class_sistema import *
+from flask import Flask, render_template
+
+app = Flask(__name__, static_url_path='/static')
 
 sist = Sistema()
 sist.cargar_datos("datos.json")
+
+@app.route('/')
+def main_page():
+    return render_template("main_page.html")
+
+@app.route('/ejercicio_1')
+def ejercicio_1():
+    return render_template("ejercicio_1.html", data=sist.lista_vuelos)
 
 # Punto 1
 print("1) Pasajeros por vuelo:")

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <h2>Ejercicio 1)</h2>
+    <p>Pasajeros por vuelo:</p>
+    {% for vuelo in data %}
+    <ul>
+        <li><i class="fas fa-plane-departure"></i> {{ vuelo.get_info() }} </li>
+        <ul>
+            {% for pasaj in vuelo.pasajeros %}
+                <li> {{ pasaj.apellido + " " + pasaj.nombre + " (DNI " + pasaj.dni + ")" }} </li>
+                VIP:
+                {% if pasaj.vip %}
+                    si
+                {% else %}
+                    no
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </ul>
+    {% endfor %}
+</body>
+</html>

@@ -114,3 +114,7 @@ class Sistema(object):
         tmp_vuelo = Vuelo(avion, fecha, hora, origen, destino, tripulacion, pasajeros)
         self.lista_vuelos.append(tmp_vuelo)
         return tmp_vuelo
+
+    # EJERCICIOS
+    def ejercicio_1(self):
+        return [vuelo.pasajeros for vuelo in self.lista_vuelos]
