@@ -57,6 +57,38 @@ for vuelo in sist.lista_vuelos:
         for trip in trip_no_autorizada:
             print("\t\tTripulante " + trip.apellido + " " + trip.nombre + " (DNI " + str(trip.dni) + ")")
 
+print("\n")
 # Punto 5
 print("5) Tripulantes con mas de un viaje en determinado dia:")
+tmp_trips = []
 for vuelo in sist.lista_vuelos:
+    for vuelo2 in sist.lista_vuelos:
+        if not vuelo == vuelo2:
+            if vuelo.fecha == vuelo2.fecha:
+                for trip in vuelo.tripulacion:
+                    if trip in vuelo2.tripulacion and trip not in [t[0] for t in tmp_trips]:
+                        tmp_trips.append([trip, vuelo, vuelo2])
+
+for trip in tmp_trips:
+    print("\tTripulante " + trip[0].apellido + " " + trip[0].nombre + " (DNI " + str(trip[0].dni) + ")")
+    for vuelo_extra in trip[1:]:
+        print("\t\tAparece en [" + vuelo_extra.get_info() + "]")
+
+# Punto 6 implicitamente realizado en punto 1
+
+print("\n")
+# Punto 7
+print("7) Idiomas hablados por la tripulacion en cada vuelo:")
+for vuelo in sist.lista_vuelos:
+    print("\t" + vuelo.get_info())
+
+    vuelo_idiomas = []
+    for trip in vuelo.tripulacion:
+        try:
+            for i in trip.idiomas:
+                if i not in vuelo_idiomas:
+                    vuelo_idiomas.append(i)
+        except AttributeError:
+            pass
+
+    print("\t\t" + str(vuelo_idiomas))
