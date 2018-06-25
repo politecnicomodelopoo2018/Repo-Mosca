@@ -39,7 +39,7 @@ class Sistema(object):
         # Cargar aviones
         self.lista_aviones = []
         for avion in diccionario_datos["Aviones"]:
-            self.crear_avion(avion["codigoUnico"], avion["cantidadDePasajerosMaxima"], avion["cantidadDeTripulaciónNecesaria"])
+            self.crear_avion(avion["codigoUnico"], avion["cantidadDePasajerosMaxima"], avion["cantidadDeTripulacionNecesaria"])
 
         # Cargar personas
         self.lista_pilotos, self.lista_servicio, self.lista_pasajeros = [], [], []
