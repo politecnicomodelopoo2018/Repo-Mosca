@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>Ejercicio 1</title>
+    <title>Ejercicio 1 / 6</title>
     <style>
         table, h2 {
             overflow: hidden;
@@ -13,49 +13,66 @@
             font-family: verdana;
             color: white;
         }
-        th, td, h2 {
-            padding: 8px;
-        }
-        th {
-            background-color: rgb(100,170,255);
+        th, td, h2 { padding: 8px; }
+        th { background-color: rgb(100,170,255); }
+        p { color: rgb(100, 170, 255) }
+
+        .ej_button {
+            font-size: 2.5em;
+            color: rgb(170, 170, 255);
         }
     </style>
 </head>
-<body>
-    <h2 class="ej_title">Ejercicio 1) Pasajeros por vuelo</h2>
-    {% for vuelo in data %}
-    <table width="40%" style="text-align:center;">
-        <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>DNI</th>
-            <th>VIP</th>
-            <th>Solicitudes</th>
-        </tr>
+<body style="background-color:rgb(40,40,40);">
+    <h2>Ejercicio 1 y 6) Pasajeros por vuelo, VIP y solicitudes</h2>
 
-        {% for pasaj in vuelo.pasajeros %}
-            <tr>
-                <td>{{ pasaj.nombre }}</td>
-                <td>{{ pasaj.apellido }}</td>
-                <td>{{ pasaj.dni }}</td>
-                <td>
-                    {% if pasaj.vip %}
-                        <i class="fas fa-check"></i>
-                    {% else %}
-                        <i class="fas fa-times"></i>
-                    {% endif %}
-                </td>
-                <td>
-                    {% if pasaj.solicitudesEspeciales %}
-                        {{ pasaj.solicitudesEspeciales }}
-                    {% else %}
-                        <i class="fas fa-times"></i>
-                    {% endif %}
-                </td>
-            </tr>
-            <br>
-        {% endfor %}
+    <table align="center" style="text-align:center; border-radius:15px;">
+        <td>
+            <i class="fas fa-arrow-circle-left ej_button" style="color:gray;"></i>
+        </td>
+        <td> 1 / 6 </td>
+        <td>
+            <a href="/ejercicio_2">
+                <i class="fas fa-arrow-circle-right ej_button"></i>
+            </a>
+        </td>
     </table>
+
+    {% for vuelo in data %}
+    <div style="padding:20px;">
+        <p> <i class="fas fa-plane-departure"></i> {{ vuelo.get_info() }} </p>
+        <table width="40%" style="text-align:center;">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>VIP</th>
+                <th>Solicitudes</th>
+            </tr>
+
+            {% for pasaj in vuelo.pasajeros %}
+                <tr>
+                    <td>{{ pasaj.nombre }}</td>
+                    <td>{{ pasaj.apellido }}</td>
+                    <td>{{ pasaj.dni }}</td>
+                    <td>
+                        {% if pasaj.vip %}
+                            <i class="fas fa-check"></i>
+                        {% else %}
+                            <i class="fas fa-times"></i>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if pasaj.solicitudesEspeciales %}
+                            {{ pasaj.solicitudesEspeciales }}
+                        {% else %}
+                            <i class="fas fa-times"></i>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
     {% endfor %}
 </body>
 </html>

@@ -117,4 +117,48 @@ class Sistema(object):
 
     # EJERCICIOS
     def ejercicio_1(self):
-        return [vuelo.pasajeros for vuelo in self.lista_vuelos]
+        return self.lista_vuelos
+
+    def ejercicio_2(self):
+        tmp_vuelos = []
+        for vuelo in self.lista_vuelos:
+            tmp_vuelo_actual = [vuelo, None]
+
+            edad = None
+            pasaj_joven = None
+            for pasaj in vuelo.pasajeros:
+                tmp_edad = pasaj.get_edad()
+                if not edad or (edad and tmp_edad < edad):
+                    edad = tmp_edad
+                    pasaj_joven = pasaj
+
+            if pasaj_joven:
+                tmp_vuelo_actual[1] = pasaj_joven
+
+            tmp_vuelos.append(tmp_vuelo_actual)
+
+        return tmp_vuelos
+
+    def ejercicio_3(self):
+        tmp_vuelos = []
+        for vuelo in self.lista_vuelos:
+            vuelo_cant_trip = len(vuelo.tripulacion)
+            vuelo_cant_nec = vuelo.avion.trip_necesaria
+
+            if vuelo_cant_trip < vuelo_cant_nec:
+                tmp_vuelos.append([vuelo, vuelo_cant_trip, vuelo_cant_nec])
+
+        return tmp_vuelos
+
+    def ejercicio_4(self):
+        tmp_vuelos = []
+        for vuelo in self.lista_vuelos:
+            trip_no_autorizada = []
+            for trip in vuelo.tripulacion:
+                if vuelo.avion not in trip.avionesHabilitados:
+                    trip_no_autorizada.append(trip)
+
+            if len(trip_no_autorizada) > 0:
+                tmp_vuelos.append([vuelo, trip_no_autorizada])
+
+        return tmp_vuelos

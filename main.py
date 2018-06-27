@@ -12,7 +12,19 @@ def main_page():
 
 @app.route('/ejercicio_1')
 def ejercicio_1():
-    return render_template("ejercicio_1.html", data=sist.lista_vuelos)
+    return render_template("ejercicio_1.html", data=sist.ejercicio_1())
+
+@app.route('/ejercicio_2')
+def ejercicio_2():
+    return render_template("ejercicio_2.html", data=sist.ejercicio_2())
+
+@app.route('/ejercicio_3')
+def ejercicio_3():
+    return render_template("ejercicio_3.html", data=sist.ejercicio_3())
+
+@app.route('/ejercicio_4')
+def ejercicio_4():
+    return render_template("ejercicio_4.html", data=sist.ejercicio_4())
 
 # Punto 1
 print("1) Pasajeros por vuelo:")

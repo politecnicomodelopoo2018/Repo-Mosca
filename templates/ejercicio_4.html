@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Ejercicio 4</title>
+    <style>
+        table, h2 {
+            overflow: hidden;
+            border-radius: 15px 30px;
+            border-spacing: 0;
+            background-color: rgb(50,120,255);
+            font-family: verdana;
+            color: white;
+        }
+        th, td, h2 { padding: 8px; }
+        th { background-color: rgb(100,170,255); }
+        p { color: rgb(100, 170, 255) }
+
+        .ej_button {
+            font-size: 2.5em;
+            color: rgb(170, 170, 255);
+        }
+    </style>
+</head>
+<body style="background-color:rgb(40,40,40);">
+    <h2>Ejercicio 4) Vuelos tripulados por personas no autorizadas</h2>
+
+    <table align="center" style="text-align:center; border-radius:15px;">
+        <td>
+            <a href="/ejercicio_3">
+                <i class="fas fa-arrow-circle-left ej_button"></i>
+            </a>
+        </td>
+        <td> 4 / 6 </td>
+        <td>
+            <a href="/ejercicio_5">
+                <i class="fas fa-arrow-circle-right ej_button"></i>
+            </a>
+        </td>
+    </table>
+
+    {% for data_vuelo in data %}
+        <div style="padding:20px;">
+            <p> <i class="fas fa-plane-departure"></i> {{ data_vuelo[0].get_info() }} </p>
+
+            {% for trip in data_vuelo[1] %}
+                <p style="padding-left:60px;">
+                    Tripulante {{ trip.apellido }} {{ trip.nombre }} (DNI {{ trip.dni }})
+                    <i class="fas fa-arrow-right"></i> Aviones habilitados:
+                    {% for av in trip.avionesHabilitados %} {{ av.codigo }}  {% endfor %}
+                </p>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>

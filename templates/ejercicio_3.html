@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Ejercicio 3</title>
+    <style>
+        table, h2 {
+            overflow: hidden;
+            border-radius: 15px 30px;
+            border-spacing: 0;
+            background-color: rgb(50,120,255);
+            font-family: verdana;
+            color: white;
+        }
+        th, td, h2 { padding: 8px; }
+        th { background-color: rgb(100,170,255); }
+        p { color: rgb(100, 170, 255) }
+
+        .ej_button {
+            font-size: 2.5em;
+            color: rgb(170, 170, 255);
+        }
+    </style>
+</head>
+<body style="background-color:rgb(40,40,40)">
+    <h2>Ejercicio 3) Vuelos que no llegan a la tripulacion minima</h2>
+
+    <table align="center" style="text-align:center; border-radius:15px;">
+        <td>
+            <a href="/ejercicio_2">
+                <i class="fas fa-arrow-circle-left ej_button"></i>
+            </a>
+        </td>
+        <td> 3 / 6 </td>
+        <td>
+            <a href="/ejercicio_4">
+                <i class="fas fa-arrow-circle-right ej_button"></i>
+            </a>
+        </td>
+    </table>
+
+    {% for vuelo in data %}
+        <div style="padding:20px;">
+            <p> <i class="fas fa-plane-departure"></i> {{ vuelo[0].get_info() }} </p>
+            <p style="padding-left:60px;"> {{ vuelo[1] }} tripulantes de {{ vuelo[2] }} necesarios. </p>
+        </div>
+    {% endfor %}
+</body>
+</html>
