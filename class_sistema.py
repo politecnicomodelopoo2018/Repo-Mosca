@@ -162,3 +162,31 @@ class Sistema(object):
                 tmp_vuelos.append([vuelo, trip_no_autorizada])
 
         return tmp_vuelos
+
+    def ejercicio_5(self):
+        tmp_trips = []
+        for vuelo in self.lista_vuelos:
+            for vuelo2 in self.lista_vuelos:
+                if not vuelo == vuelo2:
+                    if vuelo.fecha == vuelo2.fecha:
+                        for trip in vuelo.tripulacion:
+                            if trip in vuelo2.tripulacion and trip not in [t[0] for t in tmp_trips]:
+                                tmp_trips.append([trip, vuelo, vuelo2])
+
+        return tmp_trips
+
+    def ejercicio_7(self):
+        tmp_vuelos = []
+        for vuelo in self.lista_vuelos:
+            vuelo_idiomas = []
+            for trip in vuelo.tripulacion:
+                try:
+                    for i in trip.idiomas:
+                        if i not in vuelo_idiomas:
+                            vuelo_idiomas.append(i)
+                except AttributeError:
+                    pass
+
+            tmp_vuelos.append([vuelo, ", ".join(vuelo_idiomas)])
+
+        return tmp_vuelos

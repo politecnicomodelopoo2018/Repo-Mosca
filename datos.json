@@ -67,7 +67,7 @@
     },
     {
       "tipo": "Piloto",
-      "nombre": "JoaquÃ­n",
+      "nombre": "Joaquín",
       "apellido": "Sarasa",
       "fechaNacimiento": "1975-09-19",
       "dni": "5",
@@ -80,25 +80,25 @@
       "fechaNacimiento": "1975-09-19",
       "dni": "6",
       "avionesHabilitados": ["A2","A3","A4"],
-      "idiomas": ["InglÃ©s", "EspaÃ±ol"]
+      "idiomas": ["Inglés", "Español"]
     },
     {
       "tipo": "Servicio",
-      "nombre": "MarÃ­a",
+      "nombre": "María",
       "apellido": "Lalala",
       "fechaNacimiento": "1975-10-19",
       "dni": "7",
       "avionesHabilitados": ["A2","A4"],
-      "idiomas": ["InglÃ©s"]
+      "idiomas": ["Inglés"]
     },
     {
       "tipo": "Servicio",
       "nombre": "Florencia",
-      "apellido": "PÃ©rez",
+      "apellido": "Pérez",
       "fechaNacimiento": "1985-10-10",
       "dni": "8",
       "avionesHabilitados": ["A3","A4"],
-      "idiomas": ["InglÃ©s", "PortuguÃ©s"]
+      "idiomas": ["Inglés", "Portugués"]
     },
     {
       "tipo": "Servicio",
@@ -107,7 +107,7 @@
       "fechaNacimiento": "1985-11-10",
       "dni": "9",
       "avionesHabilitados": ["A1","A3","A4"],
-      "idiomas": ["EspaÃ±ol", "PortuguÃ©s"]
+      "idiomas": ["Español", "Portugués"]
     },
     {
       "tipo": "Pasajero",
@@ -210,7 +210,7 @@
       "fecha": "2018-09-30",
       "hora": "12:30",
       "origen": "Buenos Aires",
-      "destino": "CÃ³rdoba",
+      "destino": "Córdoba",
       "tripulacion": ["3","5","8"],
       "pasajeros": ["10","11","12"]
     }

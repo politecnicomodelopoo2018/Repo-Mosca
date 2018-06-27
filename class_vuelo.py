@@ -14,4 +14,5 @@ class Vuelo(object):
         self.pasajeros = pasajeros
 
     def get_info(self):
-        return "Vuelo de " + self.origen + " a " + self.destino + " con avion " + str(self.avion.codigo) + " [" + self.hora + "]"
+        return "Vuelo de " + self.origen + " a " + self.destino + " con avion " + str(self.avion.codigo) + ", el dia "\
+               + self.fecha.strftime("%d/%m/%Y") + " a las " + self.hora + " hs"

@@ -1,15 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>TP - Pagina principal</title>
+    <title>TP Mosca - Pagina principal</title>
+    <style>
+        h2 {
+            padding: 8px;
+            overflow: hidden;
+            border-radius: 22px;
+            border-spacing: 0;
+            background-color: rgb(50,120,255);
+            font-family: verdana;
+            color: white;
+        }
+
+        .button {
+            border: none;
+            border-radius:15px;
+            color: white;
+            padding: 8px 15px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        a { color: rgb(100,100,255); }
+        a:visited { color: rgb(200,200,255); }
+    </style>
 </head>
-<body>
-    <a href="/ejercicio_1">Ejercicio 1 / 6</a> <br>
-    <a href="/ejercicio_2">Ejercicio 2</a> <br>
-    <a href="/ejercicio_3">Ejercicio 3</a> <br>
-    <a href="/ejercicio_4">Ejercicio 4</a> <br>
-    <a href="/ejercicio_5">Ejercicio 5</a> <br>
-    <a href="/ejercicio_7">Ejercicio 7</a>
+<body style="background-color:rgb(40,40,40); color:rgb(100, 170, 255);">
+    <h2>TP Mosca - Pagina principal</h2>
+
+    <div style="padding-bottom:30px; padding-left:15px;">
+        Link al enunciado del TP: <a target="_blank" href="https://docs.google.com/document/d/1PPiuawRcgOD2p1KCSZQ3sCNb0au0h3aaSWPyAB238wo/edit">https://docs.google.com/document/d/1PPiuawRcgOD2p1KCSZQ3sCNb0au0h3aaSWPyAB238wo/edit</a>
+    </div>
+
+    <div style="padding-left:30px;">
+        <a href="/ejercicio_1"><button class="button" style="background-color:rgb(50,120,255)">Ejercicio 1 / 6</button></a>
+        <i class="fas fa-arrow-right"></i> Pasajeros por vuelo, VIP y solicitudes
+    </div>
+
+    <div style="padding-left:30px; padding-top:12px;">
+        <a href="/ejercicio_2"><button class="button" style="background-color:rgb(50,120,255)">Ejercicio 2</button></a>
+        <i class="fas fa-arrow-right"></i> Pasajero mas joven por vuelo
+    </div>
+
+    <div style="padding-left:30px; padding-top:12px;">
+        <a href="/ejercicio_3"><button class="button" style="background-color:rgb(50,120,255)">Ejercicio 3</button></a>
+        <i class="fas fa-arrow-right"></i> Vuelos que no llegan a la tripulacion minima
+    </div>
+
+    <div style="padding-left:30px; padding-top:12px;">
+        <a href="/ejercicio_4"><button class="button" style="background-color:rgb(50,120,255)">Ejercicio 4</button></a>
+        <i class="fas fa-arrow-right"></i> Vuelos tripulados por personas no autorizadas
+    </div>
+
+    <div style="padding-left:30px; padding-top:12px;">
+        <a href="/ejercicio_5"><button class="button" style="background-color:rgb(50,120,255)">Ejercicio 5</button></a>
+        <i class="fas fa-arrow-right"></i> Tripulantes con mas de un viaje en determinado dia
+    </div>
+
+    <div style="padding-left:30px; padding-top:12px;">
+        <a href="/ejercicio_7"><button class="button" style="background-color:rgb(50,120,255)">Ejercicio 7</button></a>
+        <i class="fas fa-arrow-right"></i> Idiomas hablados por la tripulacion en cada vuelo
+    </div>
 </body>
 </html>
