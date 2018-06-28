@@ -1,16 +1,9 @@
 from class_persona import Pasajero, Servicio, Piloto
 from class_avion import *
 from class_vuelo import *
-import json
+import json, os, os.path
 
 class Sistema(object):
-
-    __instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if cls.__instance is None:
-            cls.__instance = object.__new__(cls)
-        return cls.__instance
 
     def __init__(self):
         self.lista_pasajeros = []
@@ -19,6 +12,8 @@ class Sistema(object):
 
         self.lista_aviones = []
         self.lista_vuelos = []
+
+        self.base_cargada = "Ninguna"
 
     def get_avion(self, codigo):
         for avion in self.lista_aviones:
@@ -33,7 +28,7 @@ class Sistema(object):
         return False
 
     def cargar_datos(self, archivo):
-        with open(archivo, "r") as arch:
+        with open("Bases/" + archivo, "r") as arch:
             diccionario_datos = json.loads(arch.read())
 
         # Cargar aviones
@@ -89,6 +84,8 @@ class Sistema(object):
                     v_pasajeros.append(tmp_pasaj)
 
             self.crear_vuelo(v_avion, vuelo["fecha"], vuelo["hora"], vuelo["origen"], vuelo["destino"], v_tripulacion, v_pasajeros)
+
+        self.base_cargada = archivo
 
     def crear_pasajero(self, nombre, apellido, fechanac, dni, vip, nec_esp):
         tmp_pasajero = Pasajero(nombre, apellido, fechanac, dni, vip, nec_esp)
@@ -190,3 +187,6 @@ class Sistema(object):
             tmp_vuelos.append([vuelo, ", ".join(vuelo_idiomas)])
 
         return tmp_vuelos
+
+    def bases_disponibles(self):
+        return [f for f in os.listdir("Bases") if os.path.isfile("Bases/" + f)]

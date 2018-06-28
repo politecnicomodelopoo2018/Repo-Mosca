@@ -1,5 +1,5 @@
 from class_sistema import *
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -8,7 +8,7 @@ sist.cargar_datos("datos.json")
 
 @app.route('/')
 def main_page():
-    return render_template("main_page.html")
+    return render_template("main_page.html", base=sist.base_cargada)
 
 @app.route('/ejercicio_1')
 def ejercicio_1():
@@ -33,6 +33,16 @@ def ejercicio_5():
 @app.route('/ejercicio_7')
 def ejercicio_7():
     return render_template("ejercicio_7.html", data=sist.ejercicio_7())
+
+@app.route('/cargar_base')
+def cargar_base():
+    return render_template("cargar_base.html", system=sist)
+
+@app.route('/cargar_base_eleccion')
+def cargar_base_eleccion():
+    base = request.args.get('base_select')
+    sist.cargar_datos(base)
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(debug=True)

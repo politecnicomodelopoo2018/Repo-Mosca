@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Cargar Base</title>
+    <style>
+        i { padding:8px; }
+        h2 {
+            padding: 8px;
+            overflow: hidden;
+            border-radius: 22px;
+            border-spacing: 0;
+            background-color: rgb(50,120,255);
+            font-family: verdana;
+            color: white;
+        }
+
+        .button {
+            border: none;
+            border-radius:15px;
+            color: white;
+            padding: 8px 15px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="background-color:rgb(40,40,40); color:rgb(100, 170, 255);">
+    <h2>Cargar base</h2>
+
+    <div style="padding-left:30px;">
+        <form action="/cargar_base_eleccion">
+            <p>
+                <i class="fas fa-database"></i> Bases disponibles:
+                <select name="base_select">
+                    {% for base in system.bases_disponibles() %}
+                        <option value="{{ base }}">{{ base }}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <input type="submit" class="button" value="Cargar" style="background-color: rgb(50,120,255);">
+        </form>
+    </div>
+</body>
+</html>

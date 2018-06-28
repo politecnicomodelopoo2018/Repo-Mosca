@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>TP Mosca - Pagina principal</title>
     <style>
+        i { padding:8px; }
         h2 {
             padding: 8px;
             overflow: hidden;
@@ -32,7 +33,7 @@
     <h2>TP Mosca - Pagina principal</h2>
 
     <div style="padding-bottom:30px; padding-left:15px;">
-        Link al enunciado del TP: <a target="_blank" href="https://docs.google.com/document/d/1PPiuawRcgOD2p1KCSZQ3sCNb0au0h3aaSWPyAB238wo/edit">https://docs.google.com/document/d/1PPiuawRcgOD2p1KCSZQ3sCNb0au0h3aaSWPyAB238wo/edit</a>
+        <i class="fas fa-link"></i> Link al enunciado del TP: <a target="_blank" href="https://docs.google.com/document/d/1PPiuawRcgOD2p1KCSZQ3sCNb0au0h3aaSWPyAB238wo/edit">https://docs.google.com/document/d/1PPiuawRcgOD2p1KCSZQ3sCNb0au0h3aaSWPyAB238wo/edit</a>
     </div>
 
     <div style="padding-left:30px;">
@@ -63,6 +64,11 @@
     <div style="padding-left:30px; padding-top:12px;">
         <a href="/ejercicio_7"><button class="button" style="background-color:rgb(50,120,255)">Ejercicio 7</button></a>
         <i class="fas fa-arrow-right"></i> Idiomas hablados por la tripulacion en cada vuelo
+    </div>
+
+    <div style="padding-left:15px; padding-top:36px;">
+        <a href="/cargar_base"><button class="button" style="background-color:rgb(50,120,255)">Cargar nueva base</button></a>
+        <i class="fas fa-database"></i> Base actual: {{ base }}
     </div>
 </body>
 </html>
