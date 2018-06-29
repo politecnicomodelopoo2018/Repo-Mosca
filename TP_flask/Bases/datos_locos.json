@@ -1,32 +1,32 @@
 {
   "Aviones": [
     { 
-      "codigoUnico" : "A1",
+      "codigoUnico" : "A10",
       "cantidadDePasajerosMaxima": 200,
       "cantidadDeTripulacionNecesaria": 5
     },
     { 
-      "codigoUnico" : "A2",
+      "codigoUnico" : "A20",
       "cantidadDePasajerosMaxima": 150,
       "cantidadDeTripulacionNecesaria": 4
     },
     { 
-      "codigoUnico" : "A3",
+      "codigoUnico" : "A30",
       "cantidadDePasajerosMaxima": 20,
       "cantidadDeTripulacionNecesaria": 2
     },
     { 
-      "codigoUnico" : "A4",
+      "codigoUnico" : "A40",
       "cantidadDePasajerosMaxima": 140,
       "cantidadDeTripulacionNecesaria": 3
     },
     { 
-      "codigoUnico" : "A5",
+      "codigoUnico" : "A50",
       "cantidadDePasajerosMaxima": 100,
       "cantidadDeTripulacionNecesaria": 3
     },
     { 
-      "codigoUnico" : "A6",
+      "codigoUnico" : "A60",
       "cantidadDePasajerosMaxima": 30,
       "cantidadDeTripulacionNecesaria": 2
     }
@@ -55,7 +55,7 @@
       "apellido": "Palacios",
       "fechaNacimiento": "1955-05-10",
       "dni": "3",
-      "avionesHabilitados": ["A1","A2","A3"]
+      "avionesHabilitados": ["A10","A20","A30"]
     },
     {
       "tipo": "Piloto",
@@ -63,15 +63,15 @@
       "apellido": "Fraga",
       "fechaNacimiento": "1970-04-11",
       "dni": "4",
-      "avionesHabilitados": ["A1","A3"]
+      "avionesHabilitados": ["A10","A30"]
     },
     {
       "tipo": "Piloto",
-      "nombre": "Joaquín",
+      "nombre": "JoaquÃ­n",
       "apellido": "Sarasa",
       "fechaNacimiento": "1975-09-19",
       "dni": "5",
-      "avionesHabilitados": ["A2","A3"]
+      "avionesHabilitados": ["A20","A30"]
     },
     {
       "tipo": "Servicio",
@@ -79,26 +79,26 @@
       "apellido": "Sarasa",
       "fechaNacimiento": "1975-09-19",
       "dni": "6",
-      "avionesHabilitados": ["A2","A3","A4"],
-      "idiomas": ["Inglés", "Español"]
+      "avionesHabilitados": ["A20","A30","A40"],
+      "idiomas": ["InglÃ©s", "EspaÃ±ol"]
     },
     {
       "tipo": "Servicio",
-      "nombre": "María",
+      "nombre": "MarÃ­a",
       "apellido": "Lalala",
       "fechaNacimiento": "1975-10-19",
       "dni": "7",
-      "avionesHabilitados": ["A2","A4"],
-      "idiomas": ["Inglés"]
+      "avionesHabilitados": ["A20","A40"],
+      "idiomas": ["InglÃ©s"]
     },
     {
       "tipo": "Servicio",
       "nombre": "Florencia",
-      "apellido": "Pérez",
+      "apellido": "PÃ©rez",
       "fechaNacimiento": "1985-10-10",
       "dni": "8",
-      "avionesHabilitados": ["A3","A4"],
-      "idiomas": ["Inglés", "Portugués"]
+      "avionesHabilitados": ["A30","A40"],
+      "idiomas": ["InglÃ©s", "PortuguÃ©s"]
     },
     {
       "tipo": "Servicio",
@@ -106,8 +106,8 @@
       "apellido": "Dominguez",
       "fechaNacimiento": "1985-11-10",
       "dni": "9",
-      "avionesHabilitados": ["A1","A3","A4"],
-      "idiomas": ["Español", "Portugués"]
+      "avionesHabilitados": ["A10","A30","A40"],
+      "idiomas": ["EspaÃ±ol", "PortuguÃ©s"]
     },
     {
       "tipo": "Pasajero",
@@ -179,7 +179,7 @@
   "Vuelos":
   [
     {
-      "avion": "A1",
+      "avion": "A10",
       "fecha": "2018-03-30",
       "hora": "12:00",
       "origen": "Buenos Aires",
@@ -188,7 +188,7 @@
       "pasajeros": ["1","2","17","15"]
     },
     {
-      "avion": "A2",
+      "avion": "A20",
       "fecha": "2018-03-30",
       "hora": "00:30",
       "origen": "Madrid",
@@ -197,7 +197,7 @@
       "pasajeros": ["16","10","11","12"]
     },
     {
-      "avion": "A3",
+      "avion": "A30",
       "fecha": "2018-12-30",
       "hora": "03:30",
       "origen": "Tokio",
@@ -206,11 +206,11 @@
       "pasajeros": ["2","16","17"]
     },
     {
-      "avion": "A4",
+      "avion": "A40",
       "fecha": "2018-09-30",
       "hora": "12:30",
       "origen": "Buenos Aires",
-      "destino": "Córdoba",
+      "destino": "CÃ³rdoba",
       "tripulacion": ["3","5","8"],
       "pasajeros": ["10","11","12"]
     }
