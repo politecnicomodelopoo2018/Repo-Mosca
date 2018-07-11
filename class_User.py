@@ -1,8 +1,8 @@
-class User(object):
-    def __init__(self, id_user, id_group, name, password, nickname, date_created):
-        self.id = id_user
-        self.FK_idGroup = id_group
-        self.name = name
-        self.password = password
-        self.nickname = nickname
-        self.dateCreated = date_created
+from class_DBTable import *
+
+class User(DBTable):
+    def __init__(self):
+        DBTable.__init__(self, "User")
+
+        self.add_columns("idUser", "FK_idGroup", "name", "password", "nickname", "dateCreated")
+        self.set_primary_key("idUser")

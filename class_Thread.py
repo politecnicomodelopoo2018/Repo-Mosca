@@ -1,7 +1,8 @@
-class Thread(object):
-    def __init__(self, id_thread, id_forum, id_user, name, date_created):
-        self.id = id_thread
-        self.FK_idForum = id_forum
-        self.FK_idUser = id_user
-        self.name = name
-        self.dateCreated = date_created
+from class_DBTable import *
+
+class Thread(DBTable):
+    def __init__(self):
+        DBTable.__init__(self, "Thread")
+
+        self.add_columns("idThread", "FK_idForum", "FK_idUser", "name", "dateCreated")
+        self.set_primary_key("idThread")
