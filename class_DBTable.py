@@ -18,7 +18,7 @@ class DBTable(object):
     def add_columns(self, *args):
         for col in args:
             self.cols.append(col)
-            self.col_dict[col] = "NULL"
+            self.col_dict[col] = None
 
     def set_primary_key(self, pk_row):
         self.pkey_row = pk_row
@@ -26,7 +26,7 @@ class DBTable(object):
     def set_column(self, col, value):
         if col in self.cols:
             if not value:
-                value = "NULL"
+                value = None
             self.col_dict[col] = value
         else:
             raise NameError("Undefined row " + col + " for table " + self.table_name + ".", col)
