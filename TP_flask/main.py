@@ -8,7 +8,7 @@ sist.cargar_datos("datos.json")
 
 @app.route('/')
 def main_page():
-    return render_template("main_page.html", base=sist.base_cargada)
+    return render_template("table_display.html", base=sist.base_cargada)
 
 @app.route('/ejercicio_1')
 def ejercicio_1():

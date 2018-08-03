@@ -2,23 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TP ABM Mosca</title>
-    <style>
-        h2 {
-            padding: 8px;
-            overflow: hidden;
-            border-radius: 22px;
-            border-spacing: 0;
-            background-color: rgb(50,120,255);
-            font-family: verdana;
-            color: white;
-        }
-    </style>
+    <title>Title</title>
 </head>
 <body>
-    <h2>RE LOCO</h2>
-    {% for row in database.getlist_table("ForoMoscaDB", "Category"): %}
-    {{ row.col_dict }}
-    {% endfor %}
+    <a href="/category"><button>Categorias</button></a>
 </body>
 </html>

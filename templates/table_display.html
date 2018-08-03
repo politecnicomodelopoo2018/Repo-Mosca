@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Dosis' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta charset="UTF-8">
+    <title>Tabla {{ table_name }}</title>
+    <style>
+        body {
+            font-family: 'Dosis';
+            font-size: 22px;
+            color: rgb(240, 255, 240);
+            background-image: url("https://images.pond5.com/simple-star-space-background-effect-footage-023768149_prevstill.jpeg");
+            background-color: rgb(80, 80, 80);
+        }
+        table {
+            width: auto;
+            margin: auto;
+            text-align: center;
+            border-spacing: 30px 0px;
+        }
+        h2 {
+            font-family: 'Dosis';
+            font-weight: bold;
+            text-align: center;
+        }
+        table, h2 {
+            background-color: rgb(100, 100, 100);
+        }
+    </style>
+</head>
+<body>
+    <div class="w3-container"><h2 class="w3-card-4">Tabla {{ table_name }}</h2></div>
+    <div class="w3-container">
+        <table class="w3-card-4">
+            <tr>
+            {% for col in table_cols: %}
+                <th>{{ col }}</th>
+            {% endfor %}
+            </tr>
+            {% for row in table_list %}
+                <tr>
+                    {% for col in row.cols: %}
+                        <td>{{ row.col_dict[col] }}</td>
+                    {% endfor %}
+                    <td><i class="far fa-edit"></i></td>
+                    <td><i class="far fa-trash-alt"></i></td>
+                </tr>
+            {% endfor %}
+      </table>
+    </div>
+</body>
+</html>
