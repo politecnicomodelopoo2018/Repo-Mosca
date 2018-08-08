@@ -23,6 +23,9 @@ class DBTable(object):
     def set_primary_key(self, pk_row):
         self.pkey_row = pk_row
 
+    def get_primary_key_col(self):
+        return self.col_dict[self.pkey_row]
+
     def set_column(self, col, value):
         if col in self.cols:
             if not value:

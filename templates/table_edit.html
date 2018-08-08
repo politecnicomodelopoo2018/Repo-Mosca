@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <meta charset="UTF-8">
-    <title>Tabla {{ table_name }}</title>
+    <title>Editando</title>
     <style>
         body {
             font-family: 'Dosis';
@@ -15,7 +15,7 @@
             background-image: url("https://images.pond5.com/simple-star-space-background-effect-footage-023768149_prevstill.jpeg");
             background-color: rgb(80, 80, 80);
         }
-        table {
+        table, form {
             width: auto;
             margin: auto;
             text-align: center;
@@ -40,36 +40,15 @@
     </style>
 </head>
 <body>
-    <div class="w3-container"><h2 class="w3-card-4">Tabla {{ table_name }}</h2></div>
+    <div class="w3-container"><h2 class="w3-card-4">Editando...</h2></div>
     <div class="w3-container">
-        <table class="w3-card-4">
-            <tr>
-            {% for col in table_cols: %}
-                <th>{{ col }}</th>
+        <form action="/table_edit" method="post">
+            {% for col in edit_row.col_dict: %}
+                {{ col }}: <input type="text" name="{{ col }}" value="{{ edit_row.col_dict[col] }}"> <br>
             {% endfor %}
-            </tr>
-            {% for row in table_list %}
-                <tr>
-                    {% for col in row.cols: %}
-                        <td>{{ row.col_dict[col] }}</td>
-                    {% endfor %}
-                    <td> <!-- BOTON EDITAR -->
-                        <form action="/table_edit" method="post">
-                            <button type="submit" name="{{ row.table_name }}" value="{{ row.get_primary_key_col() }}">
-                                <i class="far fa-edit"></i>
-                            </button>
-                        </form>
-                    </td>
-                    <td> <!-- BOTON BORRAR -->
-                        <form action="/table_delete" method="post">
-                            <button type="submit" name="{{ row.table_name }}" value="{{ row.get_primary_key_col() }}">
-                                <i class="far fa-trash-alt"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-            {% endfor %}
-      </table>
+            <br>
+            <input type="submit" value="Completar">
+        </form>
     </div>
 </body>
 </html>

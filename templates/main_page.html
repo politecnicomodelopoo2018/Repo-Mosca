@@ -2,9 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>FOROMOSCA</title>
 </head>
 <body>
-    <a href="/category"><button>Categorias</button></a>
+    {% for table in db_tables: %}
+    <form action="/table_display" method="post">
+        <button type="submit" name="{{table}}">{{table.capitalize()}}</button>
+    </form>
+    {% endfor %}
 </body>
 </html>
