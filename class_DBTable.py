@@ -1,3 +1,9 @@
+class DBFKey(object):
+    def __init__(self, foreign_table, foreign_column):
+        self.foreign_table = foreign_table
+        self.foreign_column = foreign_column
+
+
 class DBTable(object):
     def __init__(self, table_name):
         self.table_name = table_name
@@ -6,6 +12,7 @@ class DBTable(object):
 
         self.cols = []  # Nombres de columnas en orden
         self.col_dict = {}  # Columna: Valor
+        self.fkey_cols = {}  # Claves foraneas - Columna FK: Objeto DBFKey con tabla y columna foraneas
 
     def load_from_dict(self, orig_dict):
         for col in orig_dict:
@@ -20,11 +27,17 @@ class DBTable(object):
             self.cols.append(col)
             self.col_dict[col] = None
 
+    def add_foreign_key(self, fkey_col, foreign_table, foreign_column):
+        self.fkey_cols[fkey_col] = DBFKey(foreign_table, foreign_column)
+
     def set_primary_key(self, pk_row):
         self.pkey_row = pk_row
 
     def get_primary_key_col(self):
         return self.col_dict[self.pkey_row]
+
+    def get_display_name(self):
+        return str(self.get_primary_key_col())
 
     def set_column(self, col, value):
         if col in self.cols:

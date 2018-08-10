@@ -26,10 +26,22 @@
             font-weight: bold;
             text-align: center;
         }
-        table, h2 {
+        table, h2, .add_button {
             background-color: rgb(100, 100, 100);
         }
-        button {
+        .add_button {
+            height: 64px;
+            width: 64px;
+            margin: 12px;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+            display: block;
+            border: none;
+            outline: none;
+            color: white;
+        }
+        .tr_button {
             background-color: Transparent;
             border: none;
             cursor:pointer;
@@ -42,6 +54,14 @@
 <body>
     <div class="w3-container"><h2 class="w3-card-4">Tabla {{ table_name }}</h2></div>
     <div class="w3-container">
+        <td> <!-- BOTON AÑADIR -->
+            <form action="/table_edit" method="post">
+                <input type="hidden" name="mode_add" value="{{ table_name }}">
+                <button class="add_button" type="submit">
+                    <i style="font-size: 42px;" class="far fa-plus-square"></i>
+                </button>
+            </form>
+        </td>
         <table class="w3-card-4">
             <tr>
             {% for col in table_cols: %}
@@ -55,21 +75,25 @@
                     {% endfor %}
                     <td> <!-- BOTON EDITAR -->
                         <form action="/table_edit" method="post">
-                            <button type="submit" name="{{ row.table_name }}" value="{{ row.get_primary_key_col() }}">
+                            <button class="tr_button" type="submit" name="{{ row.table_name }}" value="{{ row.get_primary_key_col() }}">
                                 <i class="far fa-edit"></i>
                             </button>
                         </form>
                     </td>
                     <td> <!-- BOTON BORRAR -->
                         <form action="/table_delete" method="post">
-                            <button type="submit" name="{{ row.table_name }}" value="{{ row.get_primary_key_col() }}">
+                            <button class="tr_button" type="submit" name="{{ row.table_name }}" value="{{ row.get_primary_key_col() }}">
                                 <i class="far fa-trash-alt"></i>
                             </button>
                         </form>
                     </td>
                 </tr>
             {% endfor %}
-      </table>
+        </table>
+        <br>
+        <form action="/">
+            <input class="add_button" type="submit" style="display: block; width: auto; margin: 0 auto;" value="Volver">
+        </form>
     </div>
 </body>
 </html>

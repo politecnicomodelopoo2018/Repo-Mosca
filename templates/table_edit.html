@@ -15,7 +15,7 @@
             background-image: url("https://images.pond5.com/simple-star-space-background-effect-footage-023768149_prevstill.jpeg");
             background-color: rgb(80, 80, 80);
         }
-        table, form {
+        form {
             width: auto;
             margin: auto;
             text-align: center;
@@ -25,8 +25,6 @@
             font-family: 'Dosis';
             font-weight: bold;
             text-align: center;
-        }
-        table, h2 {
             background-color: rgb(100, 100, 100);
         }
         button {
@@ -37,17 +35,74 @@
             outline:none;
             color:white;
         }
+        .add_button {
+            background-color: rgb(100, 100, 100);
+            height: 64px;
+            width: auto;
+            margin: 12px;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+            display: block;
+            border: none;
+            outline: none;
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <div class="w3-container"><h2 class="w3-card-4">Editando...</h2></div>
     <div class="w3-container">
-        <form action="/table_edit" method="post">
-            {% for col in edit_row.col_dict: %}
-                {{ col }}: <input type="text" name="{{ col }}" value="{{ edit_row.col_dict[col] }}"> <br>
+        <h2 class="w3-card-4">
+            {% if mode == "edit": %}
+                Editando...
+            {% elif mode == "add": %}
+                Añadiendo...
+            {% endif %}
+        </h2>
+    </div>
+    <div class="w3-container">
+        <form action="/table_edit_complete" method="post">
+            <input type="hidden" name="tablename" value="{{ edit_row.table_name }}">
+            <input type="hidden" name="mode" value="{{ mode }}">
+            {% for col in edit_row.cols: %}
+                {% if not col == edit_row.pkey_row: %}
+                    <label>{{ col }}:</label> <br>
+                    {% if col in fkey_cols: %}
+                        <select name="column.{{ col }}">
+                            {% for foreign_col in fkey_cols[col]: %}
+                                <option value="{{ foreign_col.get_primary_key_col() }}">
+                                    {{ foreign_col.get_display_name() }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    {% else: %}
+                        <input type="text" name="column.{{ col }}"
+                               value="{% if edit_row.col_dict[col]: %}{{ edit_row.col_dict[col] }}{% endif %}">
+                    {% endif %}
+                    <br>
+                {% elif mode == "edit": %}
+                    <input type="hidden" name="column.{{ col }}" value="{{ edit_row.col_dict[col] }}">
+                {% endif %}
             {% endfor %}
             <br>
-            <input type="submit" value="Completar">
+            {% for col in fkey_cols: %}
+                {% if fkey_cols[col]|length == 0: %}
+                    {% set fkey_constraint = 0 %}
+                    <div style="color: red;">La clave foranea {{ col }} no posee elementos!</div>
+                    <div style="color: rgb(100, 100, 255);">
+                        <a href="/table_display/{{ edit_row.fkey_cols[col].foreign_table }}">
+                            Click aqui para añadir elementos en la tabla vacia
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            {% if fkey_constraint == 1: %}
+                <input class="add_button" type="submit" value="Completar">
+            {% endif %}
+        </form>
+        <form action="/table_display/{{ edit_row.table_name }}">
+            <input class="add_button" type="submit" value="Volver">
         </form>
     </div>
 </body>

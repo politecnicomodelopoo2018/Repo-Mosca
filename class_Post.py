@@ -6,3 +6,8 @@ class Post(DBTable):
 
         self.add_columns("idPost", "FK_idThread", "FK_idUser", "title", "content", "datePosted")
         self.set_primary_key("idPost")
+        self.add_foreign_key("FK_idThread", "Thread", "idThread")
+        self.add_foreign_key("FK_idUser", "User", "idUser")
+
+    def get_display_name(self):
+        return str(self.get_primary_key_col()) + " - " + self.col_dict["title"]

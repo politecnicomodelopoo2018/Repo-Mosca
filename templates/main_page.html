@@ -6,7 +6,7 @@
 </head>
 <body>
     {% for table in db_tables: %}
-    <form action="/table_display" method="post">
+    <form action="/table_display/{{ table }}" method="get">
         <button type="submit" name="{{table}}">{{table.capitalize()}}</button>
     </form>
     {% endfor %}

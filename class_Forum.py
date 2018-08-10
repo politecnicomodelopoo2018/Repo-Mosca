@@ -6,3 +6,7 @@ class Forum(DBTable):
 
         self.add_columns("idForum", "FK_idCategory", "name", "permissionLevel")
         self.set_primary_key("idForum")
+        self.add_foreign_key("FK_idCategory", "Category", "idCategory")
+
+    def get_display_name(self):
+        return str(self.get_primary_key_col()) + " - " + self.col_dict["name"]
