@@ -6,6 +6,7 @@ class User(DBTable):
 
         self.add_columns("idUser", "FK_idGroup", "name", "password", "nickname", "dateCreated")
         self.set_primary_key("idUser")
+        self.set_default_column("dateCreated", "NOW()")
         self.add_foreign_key("FK_idGroup", "UserGroup", "idGroup")
 
     def get_display_name(self):

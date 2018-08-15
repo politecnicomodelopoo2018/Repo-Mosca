@@ -65,23 +65,28 @@
             <input type="hidden" name="tablename" value="{{ edit_row.table_name }}">
             <input type="hidden" name="mode" value="{{ mode }}">
             {% for col in edit_row.cols: %}
-                {% if not col == edit_row.pkey_row: %}
-                    <label>{{ col }}:</label> <br>
-                    {% if col in fkey_cols: %}
-                        <select name="column.{{ col }}">
-                            {% for foreign_col in fkey_cols[col]: %}
-                                <option value="{{ foreign_col.get_primary_key_col() }}">
-                                    {{ foreign_col.get_display_name() }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    {% else: %}
-                        <input type="text" name="column.{{ col }}"
-                               value="{% if edit_row.col_dict[col]: %}{{ edit_row.col_dict[col] }}{% endif %}">
+                {% if col not in edit_row.default_cols: %}
+                    {% if not col == edit_row.pkey_row: %}
+                        <label>{{ col }}:</label> <br>
+                        {% if col in fkey_cols: %}
+                            <select name="column.{{ col }}">
+                                {% for foreign_col in fkey_cols[col]: %}
+                                    <option value="{{ foreign_col.get_primary_key_col() }}"
+                                    {% if foreign_col.get_primary_key_col() == edit_row.col_dict[col]: %}
+                                        selected
+                                    {% endif %}>
+                                        {{ foreign_col.get_display_name() }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        {% else: %}
+                            <input type="text" name="column.{{ col }}"
+                                   value="{% if edit_row.col_dict[col]: %}{{ edit_row.col_dict[col] }}{% endif %}">
+                        {% endif %}
+                        <br>
+                    {% elif mode == "edit": %}
+                        <input type="hidden" name="column.{{ col }}" value="{{ edit_row.col_dict[col] }}">
                     {% endif %}
-                    <br>
-                {% elif mode == "edit": %}
-                    <input type="hidden" name="column.{{ col }}" value="{{ edit_row.col_dict[col] }}">
                 {% endif %}
             {% endfor %}
             <br>

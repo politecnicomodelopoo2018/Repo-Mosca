@@ -14,6 +14,13 @@ class DBTable(object):
         self.col_dict = {}  # Columna: Valor
         self.fkey_cols = {}  # Claves foraneas - Columna FK: Objeto DBFKey con tabla y columna foraneas
 
+        """
+        Columnas con valores predeterminados (via python)
+            Usado al realizar un insert, estas columnas tendran el valor asignado aqui y no le permitira
+        al usuario modificarlas a la hora de crear el objeto.
+        """
+        self.default_cols = {}
+
     def load_from_dict(self, orig_dict):
         for col in orig_dict:
             if col in self.col_dict:
@@ -29,6 +36,10 @@ class DBTable(object):
 
     def add_foreign_key(self, fkey_col, foreign_table, foreign_column):
         self.fkey_cols[fkey_col] = DBFKey(foreign_table, foreign_column)
+
+    def set_default_column(self, column, default_val):
+        if column in self.cols:
+            self.default_cols[column] = default_val
 
     def set_primary_key(self, pk_row):
         self.pkey_row = pk_row
@@ -50,13 +61,16 @@ class DBTable(object):
     def query_insert(self):
         query = "INSERT INTO " + self.table_name + " VALUES ("
         for i, val in enumerate(self.cols):
-            val = self.col_dict[val]
-            if type(val) is str:
-                query += "'" + val + "'"
-            elif val is None:
-                query += "NULL"
+            if val in self.default_cols:
+                query += self.default_cols[val]
             else:
-                query += str(val)
+                val = self.col_dict[val]
+                if type(val) is str:
+                    query += "'" + val + "'"
+                elif val is None:
+                    query += "NULL"
+                else:
+                    query += str(val)
             if i < len(self.cols) - 1:
                 query += ","
 
@@ -66,13 +80,14 @@ class DBTable(object):
     def query_update(self):
         query = "UPDATE " + self.table_name + " SET"
         for i, row in enumerate(self.cols):
-            if not row == self.pkey_row:
+            cols_len = len(self.cols) - len(self.default_cols) - 1
+            if not row == self.pkey_row and row not in self.default_cols:
                 value = self.col_dict[row]
                 if type(value) is str:
                     value = "'" + value + "'"
 
                 query += " " + row + " = " + str(value)
-                if i < len(self.cols) - 1:
+                if i < cols_len:
                     query += ","
 
         query += " WHERE " + self.pkey_row + " = " + str(self.col_dict[self.pkey_row]) + ";"

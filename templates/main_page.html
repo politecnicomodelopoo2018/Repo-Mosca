@@ -42,8 +42,8 @@
     </style>
 </head>
 <body>
-    <h2>FORO DE MOSCA</h2>
-    <p style="text-align:center;">Tablas en la base:</p>
+    <h2><i class="fas fa-bug"></i>  FORO DE MOSCA  <i class="fas fa-bug"></i></h2>
+    <p style="text-align:center;"><i class="fas fa-database"></i> Tablas en la base:</p>
     {% for table in db_tables: %}
     <form action="/table_display/{{ table }}" method="get">
         <button type="submit" name="{{table}}">{{table.capitalize()}}</button>
