@@ -85,7 +85,7 @@ def table_delete():
         if table.lower() in db.db_tables:
             tmp_obj = db.get_table_row(table, form_data[table])
             if tmp_obj:
-                db.run_query(tmp_obj.query_delete())
+                db.run_query([tmp_obj.query_delete(), ()])
             return redirect('/table_display/' + table)
     return redirect('/')
 

@@ -13,10 +13,8 @@ class DataBase(object):
                              db=target_db,
                              autocommit=True)
 
-        query_string = query[0]
-        query_args = query[1]
         cursor = db.cursor(pymysql.cursors.DictCursor)
-        cursor.execute(query_string, query_args)
+        cursor.execute(*query)
 
         db.close()
         return cursor
