@@ -59,39 +59,39 @@ class DBTable(object):
             raise NameError("Undefined row " + col + " for table " + self.table_name + ".", col)
 
     def query_insert(self):
-        query = "INSERT INTO " + self.table_name + " VALUES ("
+        query_args = []
+        query_string = "INSERT INTO " + self.table_name + " VALUES ("
         for i, val in enumerate(self.cols):
             if val in self.default_cols:
-                query += self.default_cols[val]
+                query_string += self.default_cols[val]
             else:
+                query_string += "%s"
                 val = self.col_dict[val]
-                if type(val) is str:
-                    query += "'" + val + "'"
-                elif val is None:
-                    query += "NULL"
+                if val is None:
+                    query_args.append(None)
                 else:
-                    query += str(val)
+                    query_args.append(str(val))
             if i < len(self.cols) - 1:
-                query += ","
+                query_string += ","
 
-        query += ");"
-        return query
+        query_string += ");"
+        return [query_string, query_args]
 
     def query_update(self):
-        query = "UPDATE " + self.table_name + " SET"
+        query_args = []
+        query_string = "UPDATE " + self.table_name + " SET"
         for i, row in enumerate(self.cols):
             cols_len = len(self.cols) - len(self.default_cols) - 1
             if not row == self.pkey_row and row not in self.default_cols:
                 value = self.col_dict[row]
-                if type(value) is str:
-                    value = "'" + value + "'"
 
-                query += " " + row + " = " + str(value)
+                query_string += " %s = %s" % (row, '%s')
+                query_args.append(str(value))
                 if i < cols_len:
-                    query += ","
+                    query_string += ","
 
-        query += " WHERE " + self.pkey_row + " = " + str(self.col_dict[self.pkey_row]) + ";"
-        return query
+        query_string += " WHERE " + self.pkey_row + " = " + str(self.col_dict[self.pkey_row]) + ";"
+        return [query_string, query_args]
 
     def query_delete(self):
         if not self.pkey_row:

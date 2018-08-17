@@ -26,7 +26,7 @@ class MainDB(DataBase):
     def getlist_table(self, table_name):
         if table_name.lower() not in self.db_tables:
             return []
-        query_result = self.run_query("SELECT * FROM " + table_name)
+        query_result = self.run_query(["SELECT * FROM %s;" % table_name, ()])
 
         table_list = []
         for row in query_result:
@@ -40,8 +40,9 @@ class MainDB(DataBase):
             return None
 
         tmp_obj = self.db_tables[table_name.lower()]()
-        query = "SELECT * FROM " + table_name + " WHERE " + tmp_obj.pkey_row + " = " + str(row_id)
-        query_result = self.run_query(query)
+        query_string = "SELECT * FROM %s WHERE %s = %s;" % (table_name, tmp_obj.pkey_row, '%s')
+        query_args = [str(row_id)]
+        query_result = self.run_query([query_string, query_args])
 
         obj_dict = query_result.fetchone()
         if obj_dict:
